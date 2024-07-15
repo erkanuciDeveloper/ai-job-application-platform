@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f2ef;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #0077b5;
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-header img {
+            border-radius: 50%;
+            margin-right: 20px;
+            width: 100px;
+            height: 100px;
+        }
+        .profile-header h1 {
+            margin: 0;
+        }
+        .profile-info {
+            margin-bottom: 20px;
+        }
+        .profile-info p {
+            margin: 5px 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="file"] {
+            display: block;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white;
+            background-color: #0077b5;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn:hover {
+            background-color: #005f93;
+        }
+        .alert {
+            padding: 15px;
+            background-color: #f44336;
+            color: white;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2>Job Application Platform</h2>
+
+        <div class="info">
+          <a href="dashboard">Dashboard</a>
+        </div>
+    
+        
+    </div>
+    <div class="container">
+        <div class="profile-header">
+            <img src="https://via.placeholder.com/100" alt="Profile Picture">
+            <h1>Welcome to your Profile</h1>
+        </div>
+        <div class="profile-info">
+            <p><strong>Username:</strong> <span id="username"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+        </div>
+        <form id="cvUploadForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="cv">Upload your CV:</label>
+                <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+            </div>
+            <button type="submit" class="btn">Upload</button>
+        </form>
+        <div id="alert" class="alert" style="display: none;"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Token ve kullanıcı bilgilerini localStorage'dan al
+            const token = localStorage.getItem('token');
+            const username = localStorage.getItem('username');
+            const email = localStorage.getItem('email');
+
+            document.getElementById('username').textContent = username;
+            document.getElementById('email').textContent = email;
+
+            document.getElementById('cvUploadForm').addEventListener('submit', async function(event) {
+                event.preventDefault();
+                const formData = new FormData();
+                const cvFile = document.getElementById('cv').files[0];
+                formData.append('cv', cvFile);
+
+                const response = await fetch('/profile', {
+                    method: 'POST',
+                    headers: {
+                        'x-access-token': token
+                    },
+                    body: formData
+                });
+
+                const result = await response.json();
+                const alertBox = document.getElementById('alert');
+                if (response.ok) {
+                    alertBox.textContent = 'CV uploaded successfully!';
+                    alertBox.style.backgroundColor = '#4CAF50'; // Green
+                    alertBox.style.display = 'block';
+                } else {
+                    alertBox.textContent = result.message;
+                    alertBox.style.backgroundColor = '#f44336'; // Red
+                    alertBox.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Job Application Platform</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  <style>
+    body {
+      background-color: #f0f2f5; /* Light grey background */
+      font-family: Arial, sans-serif;
+    }
+    .signup-form {
+      max-width: 400px;
+      margin: 50px auto; /* Center the form and add space on top */
+      padding: 40px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .signup-form h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #0077b5; /* LinkedIn blue */
+    }
+    .signup-form input[type="text"],
+    .signup-form input[type="email"],
+    .signup-form input[type="password"] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .signup-form button {
+      width: 100%;
+      padding: 12px 20px;
+      background-color: #0077b5; /* LinkedIn blue */
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .signup-form button:hover {
+      background-color: #005f91; /* Darker blue on hover */
+    }
+    .signup-form p {
+      text-align: center;
+      margin-top: 20px;
+      color: #666; /* Grey text color */
+    }
+    .signup-form a {
+      color: #0077b5; /* LinkedIn blue */
+      text-decoration: none;
+    }
+    .signup-form a:hover {
+      text-decoration: underline;
+    }
+    .error-message {
+      color: red;
+      text-align: center;
+      margin-top: 20px;
+    }
+    /* Header styles */
+    header {
+      background-color: #343a40; /* Dark gray background */
+      padding: 10px 0;
+    }
+    .navbar-brand {
+      color: #ffffff; /* White color */
+      font-size: 1.5rem;
+      margin: 0 auto; /* Center the navbar brand */
+      display: block; /* Ensure the navbar brand is a block-level element */
+    }
+    .navbar-nav .nav-link {
+      color: #ffffff; /* White color */
+    }
+    .navbar-nav .nav-link:hover {
+      color: #c8cbcf; /* Light gray on hover */
+    }
+    .navbar {
+            background-color: #0077b5;
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+  </style>
+</head>
+
+<body>
+  <!-- Main header -->
+  <div class="navbar">
+    <h2>Job Application Platform</h2>
+</div>
+  <div class="signup-form">
+    <h1>Sign Up</h1>
+    <form id="signup-form" method="post">
+      <input type="text" id="username" name="username" placeholder="Username" required>
+      <input type="email" id="email" name="email" placeholder="Email" required>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <button type="submit">Sign Up</button>
+      <p>Already have an account? <a href="/login">Sign In</a></p>
+    </form>
+    <div id="error-message"></div>
+  </div>
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var username = document.getElementById('username').value;
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('password').value;
+
+      if (!username || !email || !password) {
+        document.getElementById('error-message').innerText = 'All fields are required.';
+        return;
+      }
+
+      var data = {
+        "username": username,
+        "email": email,
+        "password": password
+      };
+
+      fetch("/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (response.ok) {
+          window.location.href = "/login";
+        } else {
+          response.text().then(text => {
+            document.getElementById('error-message').innerText = text;
+          });
+        }
+      })
+      .catch(error => {
+        console.error("Error during signup:", error);
+        document.getElementById('error-message').innerText = 'An error occurred. Please try again.';
+      });
+    });
+  </script>
+</body>
+</html>

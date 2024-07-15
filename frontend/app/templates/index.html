@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Platform</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f2ef;
+            margin: 0;
+            padding: 0;
+        }
+        /* Additional Styling for Navigation */
+        .nav {
+            background-color: #0077b5;
+            padding: 10px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav__logo-link {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        .nav__logo-link span {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        .top-nav-menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .top-nav-menu li {
+            margin-left: 10px;
+        }
+        .top-nav-menu li:first-child {
+            margin-left: 0;
+        }
+        .top-nav-menu li a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        .nav__cta-container {
+            display: flex;
+            align-items: center;
+        }
+        .nav__button-secondary,
+        .nav__button-tertiary {
+            text-decoration: none;
+            color: #0077b5;
+            background-color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="nav pt-1.5 pb-2 flex items-center justify-between relative flex-nowrap babymamabear:py-1.5
+        babybear:flex-wrap " aria-label="Primary">
+
+        <a href="" class="nav__logo-link link-no-visited-state z-1 mr-auto min-h-[52px] flex items-center babybear:z-0 hover:no-underline focus:no-underline active:no-underline
+            " data-tracking-control-name="guest_homepage-basic_nav-header-logo" data-tracking-will-navigate="">
+            <span class="sr-only">AI Job Finder</span>
+            <icon class="nav-logo--inbug flex text-color-brand papabear:hidden mamabear:hidden order-1 lazy-loaded" data-svg-class-name="h-[34px] w-[34px] babybear:h-[26px] babybear:w-[26px]" aria-hidden="true" aria-busy="false">
+                <!-- SVG Logo -->
+            </icon>
+            <icon class="block text-color-brand w-[102px] h-[26px] babybear:hidden order-1 lazy-loaded" data-test-id="nav-logo" aria-hidden="true" aria-busy="false">
+                <!-- SVG Logo -->
+            </icon>
+        </a>
+
+        <ul class="top-nav-menu flex items-center babybear:w-full babybear:justify-between babybear:pt-1 babybear:flex-wrap justify-start w-max pt-0 overflow-x-auto
+            nav__menu babybear:order-last order-3 ml-auto">
+            <!-- Menu Items -->
+            <li>
+                <a href="https://www.linkedin.com/pulse/topics/home/?trk=guest_homepage-basic_guest_nav_menu_articles" data-tracking-control-name="guest_homepage-basic_guest_nav_menu_articles" data-tracking-will-navigate="" class="top-nav-link flex justify-center items-center min-h-[52px] hover:text-color-text visited:hover:text-color-text hover:no-underline w-8 flex-col mx-1 babybear:mx-0 text-color-text-secondary visited:text-color-text-secondary">
+                    <!-- Icon and Label -->
+                </a>
+            </li>
+            <!-- Add more menu items here -->
+        </ul>
+
+        <div class="nav__cta-container order-3 flex gap-x-1 justify-end min-w-[100px] flex-nowrap flex-shrink-0 babybear:flex-wrap flex-2">
+            <a class="nav__button-tertiary btn-md btn-tertiary" href="/signup" data-tracking-control-name="guest_homepage-basic_nav-header-join" data-tracking-will-navigate="">
+                Join now
+            </a>
+            <a class="nav__button-secondary btn-md btn-secondary-emphasis" href="/login" data-tracking-control-name="guest_homepage-basic_nav-header-signin" data-tracking-will-navigate="">
+                Sign in
+            </a>
+        </div>
+
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Main Content Goes Here -->
+    </div>
+</body>
+</html>
